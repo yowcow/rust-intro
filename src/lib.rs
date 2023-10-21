@@ -1,4 +1,5 @@
 pub mod enums;
+pub mod errors;
 pub mod hashmaps;
 pub mod rectangle;
 pub mod shapes;
