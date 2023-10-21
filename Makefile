@@ -1,6 +1,6 @@
 all:
 
-test:
-	cargo test
+test clean:
+	cargo $@
 
-.PHONY: all test
+.PHONY: all test clean
