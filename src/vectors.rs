@@ -86,19 +86,19 @@ mod vectors_tests {
         if let Some(v) = item1 {
             assert_eq!(v.to_string(), "3 (i32)");
         } else {
-            assert!(false);
+            panic!("item1 should be i32");
         }
 
         if let Some(v) = item2 {
             assert_eq!(v.to_string(), "10.12 (f64)");
         } else {
-            assert!(false);
+            panic!("item1 should be f64");
         }
 
         if let Some(v) = item3 {
             assert_eq!(v.to_string(), "hello (String)");
         } else {
-            assert!(false);
+            panic!("item1 should be String");
         }
     }
 }
