@@ -6,5 +6,6 @@ pub mod rectangle;
 pub mod shapes;
 pub mod slices;
 pub mod structs;
+pub mod traits;
 pub mod triangle;
 pub mod vectors;
