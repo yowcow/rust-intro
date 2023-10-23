@@ -9,6 +9,10 @@ pub fn read_from_file(file_path: &str) -> Result<String, Box<dyn Error>> {
     Ok(content)
 }
 
+pub fn last_char_of_first_line(text: &str) -> Option<char> {
+    text.lines().next()?.chars().last()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -78,6 +82,26 @@ mod tests {
         match result {
             Ok(_) => Err("should fail on no such file error"),
             Err(_) => Ok(()),
+        }
+    }
+
+    #[test]
+    fn no_early_return_on_no_error() {
+        let text = "hoge fuga\nfoo bar\n";
+        let opt = last_char_of_first_line(&text);
+        if let Some(c) = opt {
+            assert_eq!(c, 'a');
+        } else {
+            panic!("expected 'a' but got None");
+        }
+    }
+
+    #[test]
+    fn early_return_on_error() {
+        let text = "";
+        let opt = last_char_of_first_line(&text);
+        if let Some(_) = opt {
+            panic!("expected None but got Some");
         }
     }
 }
