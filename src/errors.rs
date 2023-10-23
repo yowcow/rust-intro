@@ -1,7 +1,18 @@
+use std::error::Error;
+use std::fs::File;
+use std::io::Read;
+
+pub fn read_from_file(file_path: &str) -> Result<String, Box<dyn Error>> {
+    let mut file = File::open(file_path)?;
+    let mut content = String::new();
+    file.read_to_string(&mut content)?;
+    Ok(content)
+}
+
 #[cfg(test)]
-mod errors_tests {
-    use std::fs::File;
-    use std::io::{ErrorKind, Read};
+mod tests {
+    use super::*;
+    use std::io::ErrorKind;
 
     #[test]
     fn open_and_read_file_ok() {
@@ -51,4 +62,22 @@ mod errors_tests {
     //    let _ = File::open(String::from("files/non-existing.txt"))
     //        .expect("non-existing.txt should exist");
     //}
+
+    #[test]
+    fn propagating_errors() -> Result<(), Box<dyn Error>> {
+        let result = read_from_file("files/hello.txt");
+        match result {
+            Ok(_) => Ok(()),
+            Err(e) => Err(e),
+        }
+    }
+
+    #[test]
+    fn propagating_errors_on_failure() -> Result<(), &'static str> {
+        let result = read_from_file("files/hello.txt0");
+        match result {
+            Ok(_) => Err("should fail on no such file error"),
+            Err(_) => Ok(()),
+        }
+    }
 }
