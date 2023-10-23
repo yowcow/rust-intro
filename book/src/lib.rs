@@ -1,3 +1,4 @@
+pub mod boxes;
 pub mod closures;
 pub mod enums;
 pub mod errors;
