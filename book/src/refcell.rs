@@ -91,14 +91,13 @@ pub enum List {
 
 use std::cell::RefCell;
 use std::rc::Rc;
-use List::Cons;
 
 pub fn get_cons_list(list: List) -> Vec<i32> {
     let mut listref = &list;
     let mut ret = vec![];
 
     loop {
-        if let Cons(v, next) = listref {
+        if let List::Cons(v, next) = listref {
             ret.push(*v.borrow());
             listref = next;
         } else {
