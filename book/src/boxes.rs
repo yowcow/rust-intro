@@ -3,6 +3,24 @@ pub enum List {
     Nil,
 }
 
+use List::Cons;
+
+pub fn get_cons_list(list: List) -> Vec<i32> {
+    let mut listref = &list;
+    let mut ret = vec![];
+
+    loop {
+        if let Cons(val, next) = listref {
+            ret.push(*val);
+            listref = next;
+        } else {
+            break;
+        }
+    }
+
+    ret
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -10,19 +28,10 @@ mod tests {
 
     #[test]
     fn test_cons_list() {
-        let mut list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
-        let mut vals = vec![];
+        let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+        let result = get_cons_list(list);
 
-        loop {
-            if let Cons(val, next) = list {
-                vals.push(val);
-                list = *next;
-            } else {
-                break;
-            }
-        }
-
-        assert_eq!(vals, vec![1, 2, 3]);
+        assert_eq!(result, vec![1, 2, 3]);
     }
 }
 

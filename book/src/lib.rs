@@ -7,6 +7,7 @@ pub mod generics;
 pub mod hashmaps;
 pub mod iterators;
 pub mod lifetimes;
+pub mod refcount;
 pub mod slices;
 pub mod structs;
 pub mod tests;
