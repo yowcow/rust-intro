@@ -23,13 +23,30 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_count_up_on_drop() {
+    fn test_implicit_drop() {
         let mut drop_count = 0;
 
         {
             let p = CustomSmartPointer::new(&mut drop_count);
 
             assert_eq!(p.current_count(), 0);
+        }
+
+        assert_eq!(drop_count, 1);
+    }
+
+    #[test]
+    fn test_explicit_drop() {
+        let mut drop_count = 0;
+
+        {
+            let p = CustomSmartPointer::new(&mut drop_count);
+
+            assert_eq!(p.current_count(), 0);
+
+            drop(p);
+
+            assert_eq!(drop_count, 1);
         }
 
         assert_eq!(drop_count, 1);
