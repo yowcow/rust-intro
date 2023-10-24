@@ -14,5 +14,6 @@ pub mod refcount;
 pub mod slices;
 pub mod structs;
 pub mod tests;
+pub mod threads;
 pub mod traits;
 pub mod vectors;
