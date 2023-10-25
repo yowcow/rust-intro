@@ -9,6 +9,7 @@ pub mod iterators;
 pub mod lifetimes;
 pub mod oop;
 pub mod oop_blog;
+pub mod pattern_matching;
 pub mod refcell;
 pub mod refcell_leak;
 pub mod refcell_weak;
