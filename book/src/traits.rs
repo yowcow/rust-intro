@@ -39,7 +39,7 @@ pub fn call_boxed_summarize(item: &Box<dyn Summary>) -> String {
 }
 
 #[cfg(test)]
-mod traits_tests {
+mod tests {
     use super::*;
 
     #[test]
