@@ -8,6 +8,7 @@ pub mod hashmaps;
 pub mod iterators;
 pub mod lifetimes;
 pub mod oop;
+pub mod oop_blog;
 pub mod refcell;
 pub mod refcell_leak;
 pub mod refcell_weak;
