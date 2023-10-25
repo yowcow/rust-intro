@@ -67,4 +67,16 @@ mod option_tests {
             assert!(false)
         }
     }
+
+    #[test]
+    fn test_take_an_option() {
+        let mut myopt = Some(42);
+
+        assert_eq!(myopt, Some(42));
+
+        let taken_value = myopt.take();
+
+        assert_eq!(taken_value, Some(42));
+        assert_eq!(myopt, None);
+    }
 }
