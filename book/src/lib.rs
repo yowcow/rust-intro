@@ -1,3 +1,4 @@
+pub mod advanced_unsafe;
 pub mod boxes;
 pub mod closures;
 pub mod drops;
