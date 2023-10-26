@@ -79,4 +79,14 @@ mod option_tests {
         assert_eq!(taken_value, Some(42));
         assert_eq!(myopt, None);
     }
+
+    #[test]
+    fn test_map_some() {
+        let list_of_values: Vec<Option<u32>> = (0u32..5).map(Option::Some).collect();
+
+        assert_eq!(
+            list_of_values,
+            vec![Some(0), Some(1), Some(2), Some(3), Some(4),]
+        );
+    }
 }

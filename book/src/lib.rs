@@ -1,4 +1,5 @@
 pub mod advanced_traits;
+pub mod advanced_types;
 pub mod advanced_unsafe;
 pub mod boxes;
 pub mod closures;

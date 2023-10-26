@@ -114,3 +114,44 @@ mod generics_enum_tests {
         }
     }
 }
+
+#[cfg(test)]
+mod multiple_trait_bounds_tests {
+    use std::fmt;
+    use std::ops::Add;
+
+    pub fn do_work<T: fmt::Display + Add>(item1: T, item2: T) -> String
+    where
+        <T as Add>::Output: fmt::Display,
+    {
+        format!("{}", item1.add(item2))
+    }
+
+    struct Item(String);
+
+    impl fmt::Display for Item {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "Item({})", self.0)
+        }
+    }
+
+    impl Add for Item {
+        type Output = Item;
+
+        fn add(self, rhs: Self) -> Self::Output {
+            let mut s = self.0.to_string();
+            s.push_str("+");
+            s.push_str(&rhs.0);
+            Item(s)
+        }
+    }
+
+    #[test]
+    fn test_do_work() {
+        let item1 = Item(String::from("Hello"));
+        let item2 = Item(String::from("world"));
+        let result = do_work(item1, item2);
+
+        assert_eq!(result, "Item(Hello+world)");
+    }
+}
